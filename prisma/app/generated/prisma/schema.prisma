@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql" // or mysql/sqlite
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(APPLICANT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  applications Application[]
+  jobsPosted   Job[]         @relation("PostedJobs")
+}
+
+model Job {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  location    String
+  salary      Int?
+  postedAt    DateTime @default(now())
+  postedById  String
+
+  postedBy     User          @relation("PostedJobs", fields: [postedById], references: [id])
+  applications Application[]
+}
+
+model Application {
+  id    String @id @default(cuid())
+  job   Job    @relation(fields: [jobId], references: [id])
+  jobId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  fullName     String
+  email        String
+  phone        String
+  resumeUrl    String
+  coverLetter  String?
+  portfolioUrl String?
+  linkedinUrl  String?
+  status       ApplicationStatus @default(pending)
+  appliedAt    DateTime          @default(now())
+
+  @@unique([userId, jobId]) // prevent duplicate applications
+}
+
+enum Role {
+  ADMIN
+  APPLICANT
+}
+
+enum ApplicationStatus {
+  pending
+  shortlisted
+  rejected
+  accepted
+}
