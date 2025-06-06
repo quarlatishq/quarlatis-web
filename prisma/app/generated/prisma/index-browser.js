@@ -120,29 +120,18 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  password: 'password',
-  role: 'role',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.JobScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
   location: 'location',
   salary: 'salary',
-  postedAt: 'postedAt',
-  postedById: 'postedById'
+  postedAt: 'postedAt'
 };
 
 exports.Prisma.ApplicationScalarFieldEnum = {
   id: 'id',
   jobId: 'jobId',
-  userId: 'userId',
   fullName: 'fullName',
   email: 'email',
   phone: 'phone',
@@ -168,11 +157,6 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.Role = exports.$Enums.Role = {
-  ADMIN: 'ADMIN',
-  APPLICANT: 'APPLICANT'
-};
-
 exports.ApplicationStatus = exports.$Enums.ApplicationStatus = {
   pending: 'pending',
   shortlisted: 'shortlisted',
@@ -181,7 +165,6 @@ exports.ApplicationStatus = exports.$Enums.ApplicationStatus = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User',
   Job: 'Job',
   Application: 'Application'
 };

@@ -27,7 +27,7 @@ import prisma from "../../../lib/prisma";
 
 export async function GET() {
   const apps = await prisma.application.findMany({
-    include: { job: true, user: true },
+    include: { job: true },
   });
   return NextResponse.json(apps);
 }
@@ -35,29 +35,17 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+    console.log(body);
 
-    // Check if user with the email exists
-    const user = await prisma.user.findUnique({
-      where: { email: body.email },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "User with this email does not exist." },
-        { status: 400 }
-      );
-    }
-
-    // Make sure userId in body matches found user.id (or override to be safe)
     const newApplication = await prisma.application.create({
       data: {
         ...body,
-        userId: user.id,
       },
     });
 
     return NextResponse.json(newApplication);
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
       { error: "Failed to create application" },
       { status: 500 }

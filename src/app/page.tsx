@@ -34,7 +34,7 @@ export default function NavbarDemo() {
     },
     {
       name: "Carriers",
-      link: "#carriers",
+      link: "#Carriers",
     },
     {
       name: "Contact",
