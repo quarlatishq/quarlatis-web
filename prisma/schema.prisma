@@ -1,47 +1,52 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "./app/generated/prisma"
 }
-
 datasource db {
-  provider = "postgresql"
+  provider = "postgresql" // or mysql/sqlite
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
 
 
+model Job {
+  id          String        @id @default(uuid())
+  title       String
+  description String
+  location    String
+  salary      Int?
+  postedAt    DateTime      @default(now())
+  applications Application[]
 }
-
-
-
+model contact {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  message     String
+}
 model Application {
   id           String   @id @default(cuid())
-  job          String
+  job          Job      @relation(fields: [jobId], references: [id])
   jobId        String
 
-
-  firstName    String
-  lastName     String
+  fullName     String
   email        String
   phone        String
   resumeUrl    String
   coverLetter  String?
   portfolioUrl String?
   linkedinUrl  String?
-  githubUrl    String?
-  status       String @default("pending")
+  status       ApplicationStatus @default(pending)
   appliedAt    DateTime @default(now())
+
+
 }
 
 
+
+enum ApplicationStatus {
+  pending
+  shortlisted
+  rejected
+  accepted
+}

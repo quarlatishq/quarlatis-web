@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -8,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Navbar,
   NavBody,
@@ -106,23 +108,23 @@ export default function NavbarDemo() {
   const navItems = [
     {
       name: "Features",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Who are We",
-      link: "#about",
+      link: "/#about",
     },
     {
       name: "Projects",
-      link: "projects",
+      link: "/#projects",
     },
     {
       name: "Carriers",
-      link: "#carriers",
+      link: "/Carriers",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "contact",
     },
   ];
 
@@ -184,6 +186,24 @@ export default function NavbarDemo() {
 }
 
 export function CareersPage() {
+  const [jobs, setJobs] = useState([]);
+  const router = useRouter();
+  useEffect(() => {
+    const jobs = async () => {
+      const res = await fetch("/api/jobs", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setJobs(data);
+    };
+    jobs();
+  }, []);
+  const sendDetail = (id: string) => {
+    router.push(`/jobs/${id}`);
+  };
   return (
     <div className="min-h-screen  text-white">
       {/* Header */}
@@ -455,7 +475,7 @@ export function CareersPage() {
           </div>
 
           <div className="space-y-6">
-            {jobOpenings.map((job, index) => (
+            {jobs.map((job, index) => (
               <Card
                 key={index}
                 className="border-neutral-700 bg-neutral-800/50 hover:bg-neutral-800/70 hover:shadow-lg transition-all cursor-pointer"
@@ -465,36 +485,45 @@ export function CareersPage() {
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
                         <h3 className="text-xl font-semibold text-white">
-                          {job.title}
+                          {job?.title}
                         </h3>
                         <Badge
                           variant="secondary"
                           className="bg-neutral-700 text-neutral-200 hover:bg-neutral-600"
                         >
-                          {job.department}
+                          {job?.postedAt}
                         </Badge>
                       </div>
-                      <p className="text-neutral-300 mb-3">{job.description}</p>
+                      <p className="text-neutral-300 mb-3">
+                        {job?.description}
+                      </p>
                       <div className="flex flex-wrap gap-4 text-sm text-neutral-400">
                         <div className="flex items-center">
                           <MapPin className="h-4 w-4 mr-1" />
-                          {job.location}
+                          {job?.location}
                         </div>
                         <div className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
-                          {job.type}
+                          {job?.type}
                         </div>
                         <div className="flex items-center">
                           <Briefcase className="h-4 w-4 mr-1" />
-                          {job.experience}
+                          {job?.salary}
                         </div>
                       </div>
                     </div>
                     <div className="mt-4 md:mt-0 md:ml-6">
-                      <Button className="bg-[#ebff54] hover:bg-[#c2d536]">
-                        Apply Now
-                        <ChevronRight className="ml-2 h-4 w-4" />
-                      </Button>
+                      <Link
+                        href={{
+                          pathname: "/Carriers/applications",
+                          query: { id: job.id },
+                        }}
+                      >
+                        <Button className="bg-[#ebff54] hover:bg-[#c2d536]">
+                          Apply Now
+                          <ChevronRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </CardContent>
