@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,19 +21,19 @@ export default function NavbarDemo() {
   const navItems = [
     {
       name: "Features",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Who are We",
-      link: "#about",
+      link: "/#about",
     },
     {
       name: "Projects",
-      link: "projects",
+      link: "/#projects",
     },
     {
       name: "Carriers",
-      link: "#Carriers",
+      link: "/Carriers",
     },
     {
       name: "Contact",
@@ -44,7 +44,7 @@ export default function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="dark bg-black relative w-full">
+    <div className="min-h-screen dark bg-black relative w-full">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
@@ -109,7 +109,7 @@ export function ContactPage() {
   });
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -152,19 +152,18 @@ export function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white px-4 py-12 md:py-24">
+    <div className=" bg-black text-white px-4 py-12 md:py-24">
       <div className="max-w-6xl mx-auto">
-        <div className="space-y-4 mb-12">
-          <h1 className="text-5xl md:text-7xl font-bold text-[#e3ff54]">
-            Contact Us
-          </h1>
-          <p className="text-xl md:text-2xl text-[#e3ff54]">
-            Let's build your blockchain vision together
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-7xl font-bold text-[#e3ff54]">
+                Contact Us
+              </h1>
+              <p className="text-xl md:text-2xl text-[#e3ff54] pb-1">
+                Let's build your blockchain vision together
+              </p>
+            </div>
             <p className="text-lg">
               Ready to bring your blockchain project to life? Whether you're
               looking to develop a decentralized application, launch an NFT
@@ -177,9 +176,7 @@ export function ContactPage() {
                 <MapPin className="h-6 w-6 text-[#e3ff54] mt-1" />
                 <div>
                   <h3 className="font-medium">Our Location</h3>
-                  <p className="text-zinc-400">
-                    123 Blockchain Avenue, Crypto City, CC 10101
-                  </p>
+                  <p className="text-zinc-400">New Delhi,India</p>
                 </div>
               </div>
 
@@ -187,17 +184,7 @@ export function ContactPage() {
                 <Mail className="h-6 w-6 text-[#e3ff54] mt-1" />
                 <div>
                   <h3 className="font-medium">Email Us</h3>
-                  <p className="text-zinc-400">
-                    contact@buildingblockchain.com
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Phone className="h-6 w-6 text-[#e3ff54] mt-1" />
-                <div>
-                  <h3 className="font-medium">Call Us</h3>
-                  <p className="text-zinc-400">+1 (555) 123-4567</p>
+                  <p className="text-zinc-400">support@quarlatis.tech</p>
                 </div>
               </div>
             </div>

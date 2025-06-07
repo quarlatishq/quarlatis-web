@@ -108,23 +108,23 @@ export default function NavbarDemo() {
   const navItems = [
     {
       name: "Features",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Who are We",
-      link: "#about",
+      link: "/#about",
     },
     {
       name: "Projects",
-      link: "projects",
+      link: "/#projects",
     },
     {
       name: "Carriers",
-      link: "#Carriers",
+      link: "/Carriers",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "contact",
     },
   ];
 
