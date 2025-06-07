@@ -129,6 +129,13 @@ exports.Prisma.JobScalarFieldEnum = {
   postedAt: 'postedAt'
 };
 
+exports.Prisma.ContactScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  message: 'message'
+};
+
 exports.Prisma.ApplicationScalarFieldEnum = {
   id: 'id',
   jobId: 'jobId',
@@ -166,6 +173,7 @@ exports.ApplicationStatus = exports.$Enums.ApplicationStatus = {
 
 exports.Prisma.ModelName = {
   Job: 'Job',
+  contact: 'contact',
   Application: 'Application'
 };
 

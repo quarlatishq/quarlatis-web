@@ -38,7 +38,7 @@ export default function NavbarDemo() {
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "contact",
     },
   ];
 
