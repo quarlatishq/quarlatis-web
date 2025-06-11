@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { Footer } from "@/components/ui/footer";
 
-export default function NavbarDemo() {
+export default function Navbar_3() {
   const navItems = [
     {
       name: "Features",
@@ -101,7 +101,7 @@ export default function NavbarDemo() {
     </div>
   );
 }
-export function ContactPage() {
+function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -161,14 +161,14 @@ export function ContactPage() {
                 Contact Us
               </h1>
               <p className="text-xl md:text-2xl text-[#e3ff54] pb-1">
-                Let's build your blockchain vision together
+                Let&apos;s build your blockchain vision together
               </p>
             </div>
             <p className="text-lg">
-              Ready to bring your blockchain project to life? Whether you're
-              looking to develop a decentralized application, launch an NFT
-              collection, or build smart contract infrastructure, our team is
-              here to help turn your vision into reality.
+              Ready to bring your blockchain project to life? Whether
+              you&apos;re looking to develop a decentralized application, launch
+              an NFT collection, or build smart contract infrastructure, our
+              team is here to help turn your vision into reality.
             </p>
 
             <div className="space-y-6">

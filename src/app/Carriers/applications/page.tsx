@@ -2,7 +2,6 @@
 
 import type React from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import {
   Navbar,
@@ -30,7 +29,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { FileText, Globe, Linkedin, Mail, Phone, User } from "lucide-react";
 import { Footer } from "@/components/ui/footer";
-export default function NavbarDemo() {
+import { Suspense } from "react";
+export default function Navbar_1() {
   const navItems = [
     {
       name: "Features",
@@ -57,63 +57,65 @@ export default function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="dark bg-black relative w-full">
-      <Navbar>
-        {/* Desktop Navigation */}
-        <NavBody>
-          <NavbarLogo />
-          <NavItems items={navItems} />
-          <div className="flex items-center gap-4">
-            <NavbarButton variant="primary">Book a call</NavbarButton>
-          </div>
-        </NavBody>
-
-        {/* Mobile Navigation */}
-        <MobileNav>
-          <MobileNavHeader>
+    <Suspense>
+      <div className="dark bg-black relative w-full">
+        <Navbar>
+          {/* Desktop Navigation */}
+          <NavBody>
             <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
-          </MobileNavHeader>
-
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {navItems.map((item, idx) => (
-              <a
-                key={`mobile-link-${idx}`}
-                href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
-              >
-                <span className="block">{item.name}</span>
-              </a>
-            ))}
-            <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Book a call
-              </NavbarButton>
+            <NavItems items={navItems} />
+            <div className="flex items-center gap-4">
+              <NavbarButton variant="primary">Book a call</NavbarButton>
             </div>
-          </MobileNavMenu>
-        </MobileNav>
-      </Navbar>
+          </NavBody>
 
-      <ApplicationForm />
-      {/* footer */}
-      <Footer />
-      {/* Navbar */}
-    </div>
+          {/* Mobile Navigation */}
+          <MobileNav>
+            <MobileNavHeader>
+              <NavbarLogo />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </MobileNavHeader>
+
+            <MobileNavMenu
+              isOpen={isMobileMenuOpen}
+              onClose={() => setIsMobileMenuOpen(false)}
+            >
+              {navItems.map((item, idx) => (
+                <a
+                  key={`mobile-link-${idx}`}
+                  href={item.link}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="relative text-neutral-600 dark:text-neutral-300"
+                >
+                  <span className="block">{item.name}</span>
+                </a>
+              ))}
+              <div className="flex w-full flex-col gap-4">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full"
+                >
+                  Book a call
+                </NavbarButton>
+              </div>
+            </MobileNavMenu>
+          </MobileNav>
+        </Navbar>
+
+        <ApplicationForm />
+        {/* footer */}
+        <Footer />
+        {/* Navbar */}
+      </div>
+    </Suspense>
   );
 }
 
-export function ApplicationForm() {
+function ApplicationForm() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
@@ -137,7 +139,7 @@ export function ApplicationForm() {
   }, [id]);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -192,8 +194,8 @@ export function ApplicationForm() {
               Application Form
             </CardTitle>
             <CardDescription>
-              Submit your information and we'll review your application within
-              2-3 business days.
+              Submit your information and we&apos;ll review your application
+              within 2-3 business days.
             </CardDescription>
           </CardHeader>
 
@@ -298,7 +300,7 @@ export function ApplicationForm() {
                     required
                   />
                   <p className="text-sm text-gray-500">
-                    Tell us why you're interested in this position and what
+                    Tell us why you&apos;re interested in this position and what
                     makes you a great fit.
                   </p>
                 </div>

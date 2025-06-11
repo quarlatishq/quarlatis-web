@@ -9,10 +9,12 @@ export async function GET() {
   return NextResponse.json(jobs);
 }
 
+type CustomError = Error | { message: string };
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { postedById, title, description, location, salary } = body;
+    const { title, description, location, salary } = body;
 
     // 3. Create the job
     const newJob = await prisma.job.create({
@@ -21,15 +23,21 @@ export async function POST(req: Request) {
         description,
         location,
         salary,
-        postedById,
       },
     });
 
     return NextResponse.json(newJob);
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const customError = error as CustomError;
     return NextResponse.json(
-      { error: "Failed to create job", details: error.message },
-      { status: 500 }
+      {
+        error: "Failed to create job",
+        details:
+          customError instanceof Error
+            ? customError.message
+            : customError.message,
+      },
+      { status: 500 },
     );
   }
 }

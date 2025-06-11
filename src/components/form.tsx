@@ -3,11 +3,6 @@ import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
-} from "@tabler/icons-react";
 
 export default function SignupFormDemo() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,11 +12,12 @@ export default function SignupFormDemo() {
   return (
     <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
       <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
-             Fill Out Your Job Application
+        Fill Out Your Job Application
       </h2>
       <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
-        We're excited that you're interested in joining our team! Please complete the form below with accurate and up-to-date information. 
-        </p>
+        We&quot;re excited that you&quot;re interested in joining our team!
+        Please complete the form below with accurate and up-to-date information.
+      </p>
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
           <LabelInputContainer>
@@ -43,43 +39,23 @@ export default function SignupFormDemo() {
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="resumeUrl">Resume URL :</Label>
-          <Input
-            id="resumeUrl"
-            placeholder=""
-            type="text"
-          />
+          <Input id="resumeUrl" placeholder="" type="text" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="portfolioUrl">Portfolio URL :</Label>
-          <Input
-            id="portfolioUrl"
-            placeholder=""
-            type="text"
-          />
+          <Input id="portfolioUrl" placeholder="" type="text" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="github">Github ID :</Label>
-          <Input
-            id="github"
-            placeholder=""
-            type="text"
-          />
+          <Input id="github" placeholder="" type="text" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="linkdin">Linkdin ID :</Label>
-          <Input
-            id="linkdin"
-            placeholder=""
-            type="text"
-          />
+          <Input id="linkdin" placeholder="" type="text" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="coverLetter">Cover Letter</Label>
-          <Input
-            id="coverLetter"
-            placeholder=""
-            type="text"
-          />
+          <Input id="coverLetter" placeholder="" type="text" />
         </LabelInputContainer>
 
         <button
@@ -91,9 +67,8 @@ export default function SignupFormDemo() {
         </button>
 
         <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
-
       </form>
-       <BottomGradient />
+      <BottomGradient />
     </div>
   );
 }

@@ -15,7 +15,6 @@ import Spline from "@splinetool/react-spline";
 import ScrollVelocity from "../TextAnimations/ScrollVelocity/ScrollVelocity";
 import { BentoGridSecondDemo } from "@/components/ui/bento-content";
 import { Footer } from "@/components/ui/footer";
-import { ProjectShowcase } from "@/components/ui/projects";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 export default function NavbarDemo() {
@@ -134,8 +133,8 @@ const DummyContent = () => {
           <p className="text-[14px] pt-5 text-neutral-300">
             From idea to on-chain reality — we specialize in turning ambitious
             concepts into secure, scalable, and user-focused Web3 solutions.
-            Whether you're building a decentralized platform, launching an NFT
-            project, or creating smart contract infrastructure, we help
+            Whether you&apos;re building a decentralized platform, launching an
+            NFT project, or creating smart contract infrastructure, we help
             forward-thinking teams and communities bring their vision to life on
             the blockchain.
           </p>
@@ -163,7 +162,7 @@ const DummyContent = () => {
           At Quarlatis, we’re reimagining how the internet works—one
           decentralized solution at a time. We are a Web3-native product studio
           focused on building scalable, secure, and meaningful blockchain
-          applications that empower users and communities. Whether it's a
+          applications that empower users and communities. Whether it&apos;s a
           full-stack dApp, a token-powered ecosystem, or a DAO infrastructure,
           we take ideas from whiteboard to mainnet. With a team of blockchain
           engineers, designers, and strategists, we bring together technical
@@ -184,9 +183,9 @@ const DummyContent = () => {
           and cross-chain solutions, we specialize in turning complex blockchain
           concepts into production-ready applications. Each project is crafted
           with a focus on security, usability, and long-term impact—whether
-          we're launching a smart contract protocol, architecting tokenomics, or
-          integrating blockchain into enterprise workflows. We don’t just build
-          for the hype—we build for the future.
+          we&apos;re launching a smart contract protocol, architecting
+          tokenomics, or integrating blockchain into enterprise workflows. We
+          don’t just build for the hype—we build for the future.
         </p>
         <div>
           <AnimatedTestimonials testimonials={testimonials} />

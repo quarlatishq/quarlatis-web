@@ -2,6 +2,9 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
 import bcrypt from "bcryptjs";
+import { PrismaClient } from "@prisma/client";
+
+const prismaClient = prisma as PrismaClient;
 
 export async function POST(req: Request) {
   try {
@@ -11,16 +14,16 @@ export async function POST(req: Request) {
     if (!email || !password) {
       return NextResponse.json(
         { error: "Email and password are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prismaClient?.user.findUnique({ where: { email } });
 
     if (!user) {
       return NextResponse.json(
         { error: "Invalid credentials" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -29,7 +32,7 @@ export async function POST(req: Request) {
     if (!isPasswordCorrect) {
       return NextResponse.json(
         { error: "Invalid credentials" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -38,10 +41,11 @@ export async function POST(req: Request) {
       message: "Login successful",
       user: { id: user.id, email: user.email, role: user.role },
     });
-  } catch (error) {
+  } catch (error: unknown) {
+    console.log(error);
     return NextResponse.json(
       { error: "Something went wrong" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

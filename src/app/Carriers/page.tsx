@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+
 import {
   Card,
   CardContent,
@@ -23,13 +23,8 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import Spline from "@splinetool/react-spline";
-import ScrollVelocity from "../../TextAnimations/ScrollVelocity/ScrollVelocity";
-import { BentoGridSecondDemo } from "@/components/ui/bento-content";
 import { Footer } from "@/components/ui/footer";
-import { ProjectShowcase } from "@/components/ui/projects";
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+
 import {
   Briefcase,
   Heart,
@@ -47,64 +42,17 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const jobOpenings = [
-  {
-    title: "Senior Software Engineer",
-    department: "Engineering",
-    location: "Remote / San Francisco",
-    type: "Full-time",
-    experience: "5+ years",
-    description:
-      "Build scalable systems and lead technical initiatives in our growing engineering team.",
-  },
-  {
-    title: "Product Manager",
-    department: "Product",
-    location: "New York / Remote",
-    type: "Full-time",
-    experience: "3+ years",
-    description:
-      "Drive product strategy and work closely with engineering and design teams.",
-  },
-  {
-    title: "UX/UI Designer",
-    department: "Design",
-    location: "Remote",
-    type: "Full-time",
-    experience: "2+ years",
-    description:
-      "Create beautiful, intuitive user experiences that delight our customers.",
-  },
-  {
-    title: "Sales Development Representative",
-    department: "Sales",
-    location: "Chicago / Remote",
-    type: "Full-time",
-    experience: "1+ years",
-    description:
-      "Generate new business opportunities and build relationships with potential clients.",
-  },
-  {
-    title: "Marketing Specialist",
-    department: "Marketing",
-    location: "Remote",
-    type: "Full-time",
-    experience: "2+ years",
-    description:
-      "Develop and execute marketing campaigns to drive brand awareness and growth.",
-  },
-  {
-    title: "Data Analyst",
-    department: "Analytics",
-    location: "Remote / Austin",
-    type: "Full-time",
-    experience: "2+ years",
-    description:
-      "Turn data into actionable insights to drive business decisions and growth.",
-  },
-];
+interface Job {
+  id: string;
+  title: string;
+  postedAt: string;
+  description: string;
+  location: string;
+  type: string;
+  salary: string;
+}
 
-export default function NavbarDemo() {
+export default function Navbar_2() {
   const navItems = [
     {
       name: "Features",
@@ -185,9 +133,8 @@ export default function NavbarDemo() {
   );
 }
 
-export function CareersPage() {
-  const [jobs, setJobs] = useState([]);
-  const router = useRouter();
+function CareersPage() {
+  const [jobs, setJobs] = useState<Job[]>([]);
   useEffect(() => {
     const jobs = async () => {
       const res = await fetch("/api/jobs", {
@@ -201,9 +148,6 @@ export function CareersPage() {
     };
     jobs();
   }, []);
-  const sendDetail = (id: string) => {
-    router.push(`/jobs/${id}`);
-  };
   return (
     <div className="min-h-screen  text-white">
       {/* Header */}
@@ -215,16 +159,16 @@ export function CareersPage() {
             variant="secondary"
             className="mb-4 bg-neutral-800 text-neutral-200 hover:bg-neutral-700"
           >
-            We're Hiring
+            We&quot;re Hiring
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Build the Future with{" "}
             <span className="text-[#fefc58]">Quarlatis</span>
           </h1>
           <p className="text-xl text-neutral-300 mb-8 max-w-2xl mx-auto">
-            Join our mission to revolutionize the industry. We're looking for
-            passionate, innovative people who want to make a real impact while
-            growing their careers.
+            Join our mission to revolutionize the industry. We&quot;re looking
+            for passionate, innovative people who want to make a real impact
+            while growing their careers.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -299,8 +243,8 @@ export function CareersPage() {
                 </div>
                 <CardTitle className="text-white">Innovation</CardTitle>
                 <CardDescription className="text-neutral-300">
-                  We encourage creative thinking and aren't afraid to challenge
-                  the status quo.
+                  We encourage creative thinking and aren&quot;t afraid to
+                  challenge the status quo.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -338,7 +282,7 @@ export function CareersPage() {
                 </div>
                 <CardTitle className="text-white">Global Impact</CardTitle>
                 <CardDescription className="text-neutral-300">
-                  We're building solutions that make a positive difference
+                  We&quot;re building solutions that make a positive difference
                   worldwide.
                 </CardDescription>
               </CardHeader>
@@ -365,7 +309,7 @@ export function CareersPage() {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why You'll Love Working Here
+              Why You&quot;ll Love Working Here
             </h2>
             <p className="text-xl text-neutral-300">
               We offer comprehensive benefits and perks to support your personal
@@ -533,7 +477,8 @@ export function CareersPage() {
 
           <div className="text-center mt-12">
             <p className="text-neutral-300 mb-4">
-              Don't see a role that fits? We're always looking for great people.
+              Don&apos;t see a role that fits? We&apos;re always looking for
+              great people.
             </p>
             <Button
               variant="outline"
@@ -571,9 +516,9 @@ export function CareersPage() {
                   </div>
                 </div>
                 <p className="text-neutral-300">
-                  "The learning opportunities here are incredible. I've grown
-                  more in my first year at Quarlatis than in my previous three
-                  years combined."
+                  &quot;The learning opportunities here are incredible.
+                  I&apos;ve grown more in my first year at Quarlatis than in my
+                  previous three years combined.&quot;
                 </p>
               </CardContent>
             </Card>
@@ -590,9 +535,9 @@ export function CareersPage() {
                   </div>
                 </div>
                 <p className="text-neutral-300">
-                  "The collaborative culture here is amazing. Everyone is
-                  willing to help and share knowledge. It feels like we're all
-                  working toward the same goal."
+                  &quot;The collaborative culture here is amazing. Everyone is
+                  willing to help and share knowledge. It feels like wet&apos;re
+                  all working toward the same goal.&quot;
                 </p>
               </CardContent>
             </Card>
@@ -609,8 +554,9 @@ export function CareersPage() {
                   </div>
                 </div>
                 <p className="text-neutral-300">
-                  "The work-life balance is fantastic. I can be productive while
-                  still having time for my family and personal interests."
+                  &quot;The work-life balance is fantastic. I can be productive
+                  while still having time for my family and personal
+                  interests.&quot;
                 </p>
               </CardContent>
             </Card>
@@ -626,7 +572,7 @@ export function CareersPage() {
               Our Hiring Process
             </h2>
             <p className="text-xl text-neutral-300">
-              We've designed our process to be transparent, efficient, and
+              Wet&apos;ve designed our process to be transparent, efficient, and
               respectful of your time.
             </p>
           </div>
@@ -638,7 +584,8 @@ export function CareersPage() {
               </div>
               <h3 className="font-semibold mb-2 text-white">Application</h3>
               <p className="text-neutral-300 text-sm">
-                Submit your application and we'll review it within 48 hours.
+                Submit your application and wet&apos;ll review it within 48
+                hours.
               </p>
             </div>
 
@@ -669,7 +616,7 @@ export function CareersPage() {
               </div>
               <h3 className="font-semibold mb-2 text-white">Final Decision</h3>
               <p className="text-neutral-300 text-sm">
-                We'll make a decision and get back to you within 24 hours.
+                Wet&apos;ll make a decision and get back to you within 24 hours.
               </p>
             </div>
           </div>
